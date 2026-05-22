@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ZAYO Embroidery — فن التطريز اليدوي</title>
+<meta name="description" content="ZAYO Embroidery — Handmade embroidery hoops, personalised gifts and tote bags."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --cream:#f9f5ef;--warm:#f0e8d8;--blush:#e8c4b0;--rose:#c4826a;
+  --deep:#3d2b1f;--olive:#7a7a5a;--gold:#b8964e;--text:#2a1f17;--muted:#8a7060;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Amiri',serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+
+/* ===================== NAV ===================== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:0 40px;height:64px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(249,245,239,0.96);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(196,130,106,0.18);
+  transition:transform 0.4s ease;
+}
+nav.nav-hidden{transform:translateY(-100%)}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;
+  color:var(--deep);letter-spacing:0.06em;text-decoration:none;
+}
+.nav-logo span{color:var(--rose)}
+.nav-center{display:flex;gap:28px;align-items:center}
+.nav-center a{
+  font-size:0.95rem;color:var(--muted);text-decoration:none;
+  transition:color 0.3s;font-family:'Amiri',serif;
+  position:relative;
+}
+.nav-center a::after{
+  content:'';position:absolute;bottom:-4px;left:0;right:0;
+  height:1px;background:var(--rose);transform:scaleX(0);
+  transition:transform 0.3s;
+}
+.nav-center a:hover{color:var(--rose)}
+.nav-center a:hover::after{transform:scaleX(1)}
+
+.lang-strip{display:flex;gap:6px;align-items:center}
+.lang-btn{
+  background:none;border:1.5px solid var(--blush);
+  color:var(--muted);font-size:0.72rem;letter-spacing:0.08em;
+  padding:5px 12px;cursor:pointer;border-radius:20px;
+  transition:all 0.25s;font-family:'Jost',sans-serif;font-weight:500;
+}
+.lang-btn.active{background:var(--rose);border-color:var(--rose);color:#fff}
+.lang-btn:hover:not(.active){border-color:var(--rose);color:var(--rose)}
+
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--deep);transition:all 0.3s}
+
+/* ===================== FLOATING LOGO ===================== */
+.floating-logo{
+  position:fixed;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  z-index:100;pointer-events:none;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(4rem,10vw,8rem);font-weight:300;
+  letter-spacing:0.35em;text-transform:uppercase;
+  color:rgba(61,43,31,0.04);
+  white-space:nowrap;
+  animation:floatLogo 20s ease-in-out infinite;
+}
+@keyframes floatLogo{
+  0%,100%{transform:translate(-50%,-50%) rotate(-2deg) scale(1)}
+  25%{transform:translate(-48%,-52%) rotate(1deg) scale(1.02)}
+  50%{transform:translate(-52%,-48%) rotate(-1deg) scale(0.98)}
+  75%{transform:translate(-50%,-53%) rotate(2deg) scale(1.01)}
+}
+
+/* ===================== SOCIAL SIDEBAR ===================== */
+.social-sidebar{
+  position:fixed;left:0;top:50%;transform:translateY(-50%);
+  z-index:150;display:flex;flex-direction:column;gap:0;
+  border-radius:0 12px 12px 0;overflow:hidden;
+  box-shadow:4px 0 24px rgba(61,43,31,0.12);
+}
+[dir="ltr"] .social-sidebar{left:0;right:auto;border-radius:0 12px 12px 0}
+[dir="rtl"] .social-sidebar{right:0;left:auto;border-radius:12px 0 0 12px}
+.soc-btn{
+  display:flex;align-items:center;gap:10px;
+  padding:13px 14px;text-decoration:none;
+  font-size:0.75rem;font-family:'Jost',sans-serif;
+  font-weight:500;letter-spacing:0.04em;
+  color:#fff;white-space:nowrap;overflow:hidden;
+  max-width:46px;transition:max-width 0.35s ease,padding 0.35s ease;
+}
+.soc-btn:hover{max-width:180px}
+.soc-btn .soc-icon{flex-shrink:0;line-height:1;display:flex;align-items:center;justify-content:center}
+.soc-btn .soc-icon svg{display:block}
+
+.soc-btn.inst{background:linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)}
+.soc-btn.inst:hover{background:linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);filter:brightness(0.9)}
+.soc-btn.tiktok{background:#25f4ee;color:#000}
+.soc-btn.tiktok:hover{background:#1dd9c4}
+.soc-btn.wa{background:#25d366}
+.soc-btn.wa:hover{background:#1fbe5d}
+.soc-btn.email{background:var(--muted)}
+.soc-btn.email:hover{background:var(--rose)}
+
+/* ===================== HERO ===================== */
+.hero{
+  padding-top:140px;padding-bottom:80px;
+  text-align:center;position:relative;z-index:10;
+}
+.hero-tag{font-size:0.85rem;letter-spacing:0.15em;color:var(--rose);text-transform:uppercase;margin-bottom:8px}
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.5rem,6vw,4.5rem);font-weight:300;
+  line-height:1.1;margin-bottom:16px;color:var(--deep);
+  letter-spacing:0.02em;
+}
+.hero-title span{color:var(--rose)}
+.hero-desc{
+  font-size:1.1rem;color:var(--muted);margin-bottom:32px;
+  max-width:600px;margin-left:auto;margin-right:auto;
+  line-height:1.6;
+}
+
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:60px}
+.hero-btn{
+  padding:12px 28px;border:none;cursor:pointer;
+  border-radius:24px;font-size:0.95rem;font-weight:600;
+  transition:all 0.3s;text-decoration:none;
+  font-family:'Jost',sans-serif;letter-spacing:0.03em;
+}
+.hero-btn.primary{background:var(--rose);color:#fff}
+.hero-btn.primary:hover{background:var(--deep);transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,130,106,0.3)}
+.hero-btn.secondary{background:none;border:2px solid var(--rose);color:var(--rose)}
+.hero-btn.secondary:hover{background:var(--rose);color:#fff}
+
+.hero-showcase{
+  position:relative;margin:0 auto;
+}
+.hero-img{
+  max-width:600px;width:100%;border-radius:12px;
+  box-shadow:0 20px 60px rgba(61,43,31,0.15);
+}
+
+/* ===================== ABOUT SECTION ===================== */
+.about-section{padding:80px 40px;background:var(--warm);border-top:3px solid var(--rose)}
+.about-container{max-width:800px;margin:0 auto}
+.about-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;font-weight:400;color:var(--deep);
+  margin-bottom:24px;letter-spacing:0.05em;text-align:center;
+}
+.about-text{
+  font-size:1rem;line-height:1.8;color:var(--text);
+  margin-bottom:16px;text-align:justify;
+}
+.about-meta{
+  font-size:0.95rem;color:var(--rose);font-weight:600;
+  text-align:center;margin-top:24px;
+}
+
+/* ===================== IMAGE ZOOM ===================== */
+.product-image{position:relative;cursor:zoom-in}
+.product-image img{transition:transform 0.3s ease}
+.product-image:hover img{transform:scale(1.1)}
+.lightbox-image{cursor:zoom-in}
+
+/* ===================== PRODUCTS ===================== */
+.products-section{padding:100px 40px;background:var(--cream)}
+
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.5rem;font-weight:400;text-align:center;
+  margin-bottom:16px;color:var(--deep);letter-spacing:0.05em;
+}
+.section-subtitle{
+  text-align:center;color:var(--muted);margin-bottom:48px;
+  font-size:1rem;
+}
+
+.category-tabs{
+  display:flex;gap:12px;justify-content:center;margin-bottom:40px;
+  flex-wrap:wrap;align-items:center;
+}
+.cat-tab{
+  background:none;border:1px solid var(--muted);
+  padding:8px 18px;cursor:pointer;border-radius:20px;
+  font-size:0.9rem;color:var(--muted);
+  transition:all 0.3s;font-family:'Jost',sans-serif;
+  text-transform:capitalize;
+}
+.cat-tab:hover{border-color:var(--rose);color:var(--rose)}
+.cat-tab.active{background:var(--rose);border-color:var(--rose);color:#fff}
+
+.products-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:24px;margin-bottom:40px;
+}
+
+.product-card{
+  background:#fff;border-radius:8px;overflow:hidden;
+  box-shadow:0 2px 8px rgba(61,43,31,0.08);
+  cursor:pointer;transition:all 0.3s;
+}
+.product-card:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(61,43,31,0.12)}
+
+.product-image{position:relative;width:100%;height:200px;overflow:hidden;background:var(--warm)}
+.product-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s}
+.product-card:hover .product-image img{transform:scale(1.08)}
+
+.product-info{padding:16px}
+.product-name{font-size:0.95rem;color:var(--deep);margin-bottom:8px;font-weight:600}
+.product-price{font-size:0.85rem;color:var(--rose);font-weight:600}
+
+/* ===================== LIGHTBOX ===================== */
+.lightbox{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(61,43,31,0.7);z-index:300;align-items:center;
+  justify-content:center;padding:20px;backdrop-filter:blur(4px);
+}
+.lightbox.open{display:flex}
+.lightbox-content{
+  background:#fff;border-radius:12px;max-width:600px;width:100%;
+  max-height:85vh;overflow-y:auto;padding:0;position:relative;
+}
+.lightbox-close{
+  position:absolute;top:16px;right:16px;z-index:10;
+  width:32px;height:32px;border:none;
+  background:rgba(61,43,31,0.1);cursor:pointer;
+  border-radius:50%;font-size:1.5rem;color:var(--deep);
+  transition:all 0.3s;display:flex;align-items:center;justify-content:center;
+}
+.lightbox-close:hover{background:var(--rose);color:#fff}
+
+.lightbox-image{
+  width:100%;height:300px;object-fit:cover;display:block;border-radius:12px 12px 0 0;
+}
+
+.lightbox-info{padding:32px}
+.lightbox-category{font-size:0.85rem;letter-spacing:0.1em;color:var(--rose);text-transform:uppercase;margin-bottom:8px}
+.lightbox-name{
+  font-family:'Cormorant Garamond',serif;font-size:1.8rem;
+  color:var(--deep);margin-bottom:12px;font-weight:400;
+}
+.lightbox-price{font-size:1.3rem;color:var(--rose);font-weight:600;margin-bottom:24px}
+
+.order-form{display:grid;gap:16px}
+.form-group{display:flex;flex-direction:column}
+.form-group label{
+  font-size:0.9rem;color:var(--text);margin-bottom:6px;font-weight:600;
+}
+.form-group input{
+  padding:10px 12px;border:1.5px solid var(--blush);
+  border-radius:6px;font-size:0.95rem;
+  font-family:'Amiri',serif;color:var(--text);
+}
+.form-group input::placeholder{color:var(--muted)}
+.form-group input:focus{
+  outline:none;border-color:var(--rose);box-shadow:0 0 0 3px rgba(196,130,106,0.1);
+}
+
+.order-btns{display:flex;gap:12px;margin-top:8px}
+.order-btn{
+  padding:12px 24px;border:none;cursor:pointer;border-radius:6px;
+  font-size:0.95rem;font-weight:600;transition:all 0.3s;
+  font-family:'Jost',sans-serif;flex:1;
+}
+.order-btn.confirm{background:var(--rose);color:#fff}
+.order-btn.confirm:hover{background:var(--deep);transform:translateY(-2px);box-shadow:0 4px 12px rgba(196,130,106,0.3)}
+.order-btn.cancel{background:var(--warm);color:var(--text)}
+.order-btn.cancel:hover{background:var(--blush)}
+
+#formSuccess{
+  display:none;background:var(--warm);padding:12px 16px;border-radius:6px;
+  text-align:center;color:var(--rose);font-weight:600;
+  margin-bottom:16px;animation:slideIn 0.3s ease;
+}
+@keyframes slideIn{
+  from{opacity:0;transform:translateY(-10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ===================== ZOOM MODAL ===================== */
+.zoom-modal{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(61,43,31,0.9);z-index:250;align-items:center;
+  justify-content:center;padding:20px;
+}
+.zoom-modal.open{display:flex}
+.zoom-modal img{max-width:90vw;max-height:90vh;border-radius:8px}
+.zoom-modal-close{
+  position:absolute;top:20px;right:20px;
+  width:40px;height:40px;border:none;background:rgba(255,255,255,0.1);
+  cursor:pointer;border-radius:50%;font-size:1.8rem;color:#fff;
+  transition:all 0.3s;display:flex;align-items:center;justify-content:center;
+}
+.zoom-modal-close:hover{background:rgba(255,255,255,0.2)}
+
+/* ===================== RESPONSIVE ===================== */
+@media(max-width:768px){
+  nav{padding:0 20px}
+  .nav-center{gap:16px}
+  .nav-center a{font-size:0.85rem}
+  
+  .hero{padding-top:100px;padding-bottom:40px}
+  .hero-title{font-size:1.8rem}
+  .hero-desc{font-size:0.95rem}
+  .hero-btns{gap:12px}
+  
+  .section-title{font-size:1.8rem}
+  .products-section{padding:60px 20px}
+  
+  .products-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px}
+  
+  .category-tabs{gap:8px;margin-bottom:24px}
+  .cat-tab{padding:6px 14px;font-size:0.8rem}
+  
+  .lightbox-content{max-width:90vw}
+  .lightbox-info{padding:20px}
+  .lightbox-name{font-size:1.3rem}
+  .lightbox-image{height:200px}
+}
+
+@media(max-width:480px){
+  nav{padding:0 16px;height:56px}
+  .nav-logo{font-size:1.2rem}
+  .nav-center{gap:12px;display:none}
+  .nav-hamburger{display:flex}
+  
+  .hero-title{font-size:1.5rem}
+  .hero-desc{font-size:0.9rem}
+  
+  .products-section{padding:40px 16px}
+  .products-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
+  
+  .section-title{font-size:1.5rem}
+  .product-image{height:150px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav>
+  <a href="#" class="nav-logo">ZAYO <span>✧</span></a>
+  <div class="nav-center">
+    <a href="#about" data-ar="عن ZAYO" data-en="About ZAYO" data-fr="À Propos de ZAYO">عن ZAYO</a>
+    <a href="#products" data-ar="المجموعة" data-en="Collection" data-fr="Collection">المجموعة</a>
+    <a href="#contact" data-ar="تواصل" data-en="Contact" data-fr="Contact">تواصل</a>
+  </div>
+  <div class="lang-strip">
+    <button class="lang-btn active" onclick="setLang('ar')">العربية</button>
+    <button class="lang-btn" onclick="setLang('en')">English</button>
+    <button class="lang-btn" onclick="setLang('fr')">Français</button>
+  </div>
+  <button class="nav-hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- FLOATING LOGO -->
+<div class="floating-logo">ZAYO</div>
+
+<!-- SOCIAL SIDEBAR -->
+<div class="social-sidebar">
+  <a href="https://instagram.com/zayo.embroidery" target="_blank" class="soc-btn inst" title="Instagram">
+    <span class="soc-icon">📷</span>
+    <span>Instagram</span>
+  </a>
+  <a href="https://tiktok.com/@zayo.embroidery" target="_blank" class="soc-btn tiktok" title="TikTok">
+    <span class="soc-icon">🎵</span>
+    <span>TikTok</span>
+  </a>
+  <a href="https://wa.me/212783395988" target="_blank" class="soc-btn wa" title="WhatsApp">
+    <span class="soc-icon">💬</span>
+    <span>WhatsApp</span>
+  </a>
+  <a href="mailto:contact@zayoembroidery.com" class="soc-btn email" title="Email">
+    <span class="soc-icon">✉️</span>
+    <span>Email</span>
+  </a>
+</div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <p class="hero-tag" data-ar="فن التطريز اليدوي" data-en="Handmade Embroidery Art" data-fr="Art de la Broderie Faite Main">فن التطريز اليدوي</p>
+  <h1 class="hero-title">
+    <span data-ar="ZAYO" data-en="ZAYO" data-fr="ZAYO">ZAYO</span>
+  </h1>
+  <p class="hero-desc" data-ar="منتجات تطريز يدوية حصرية | هدايا مميزة | فن في التفاصيل" data-en="Exclusive handmade embroidery | Special gifts | Art in every detail" data-fr="Broderie faite main exclusive | Cadeaux spéciaux | L'art dans chaque détail">منتجات تطريز يدوية حصرية | هدايا مميزة | فن في التفاصيل</p>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="about-section" id="about">
+  <div class="about-container">
+    <h2 class="about-title" data-ar="عن ZAYO" data-en="About ZAYO" data-fr="À Propos de ZAYO">عن ZAYO</h2>
+    <p class="about-text" data-ar="ZAYO Embroidery هي علامة تجارية مختصة في فن التطريز اليدوي الراقي. كل منتج يتم تصميمه وتنفيذه بعناية فائقة باستخدام أفضل الخيوط والمواد. نؤمن أن الفن الحقيقي يكون في التفاصيل الصغيرة." data-en="ZAYO Embroidery is a brand specializing in fine handmade embroidery art. Every product is carefully designed and executed using the finest threads and materials. We believe true art lies in the smallest details." data-fr="ZAYO Embroidery est une marque spécialisée dans l'art de la broderie faite main raffinée. Chaque produit est soigneusement conçu et exécuté en utilisant les meilleurs fils et matériaux. Nous croyons que le vrai art réside dans les plus petits détails.">ZAYO Embroidery هي علامة تجارية مختصة في فن التطريز اليدوي الراقي. كل منتج يتم تصميمه وتنفيذه بعناية فائقة باستخدام أفضل الخيوط والمواد. نؤمن أن الفن الحقيقي يكون في التفاصيل الصغيرة.</p>
+    <p class="about-meta" data-ar="🎨 كل قطعة فريدة وخاصة" data-en="🎨 Each piece is unique and special" data-fr="🎨 Chaque pièce est unique et spéciale">🎨 كل قطعة فريدة وخاصة</p>
+  </div>
+</section>
+
+<!-- PRODUCTS SECTION -->
+<section class="products-section" id="products">
+  <h2 class="section-title" data-ar="مجموعتنا" data-en="Our Collection" data-fr="Notre Collection">مجموعتنا</h2>
+  <p class="section-subtitle" data-ar="اختر من بين تصاميم حصرية وفريدة" data-en="Choose from exclusive and unique designs" data-fr="Choisissez parmi nos créations exclusives et uniques">اختر من بين تصاميم حصرية وفريدة</p>
+
+  <div class="category-tabs">
+    <button class="cat-tab active" onclick="filterCat('all', this)" data-ar="الكل" data-en="All" data-fr="Tous">الكل</button>
+    <button class="cat-tab" onclick="filterCat('decorative', this)" data-ar="ديكور" data-en="Decorative" data-fr="Décor">ديكور</button>
+    <button class="cat-tab" onclick="filterCat('names', this)" data-ar="أسماء" data-en="Names" data-fr="Noms">أسماء</button>
+    <button class="cat-tab" onclick="filterCat('birthday', this)" data-ar="أعياد ميلاد" data-en="Birthdays" data-fr="Anniversaires">أعياد ميلاد</button>
+    <button class="cat-tab" onclick="filterCat('bags', this)" data-ar="حقائب" data-en="Bags" data-fr="Sacs">حقائب</button>
+    <button class="cat-tab" onclick="filterCat('photoframe', this)" data-ar="إطارات صور" data-en="Photo Frames" data-fr="Cadres Photos">إطارات صور</button>
+  </div>
+
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="if(event.target.id==='lightbox')closeLightbox()">
+  <div class="lightbox-content">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img src="" alt="" class="lightbox-image" id="lbImage">
+    <div class="lightbox-info">
+      <div id="formSuccess" data-ar="تم إرسال طلبك بنجاح ✓" data-en="Your order has been sent successfully ✓" data-fr="Votre commande a été envoyée avec succès ✓">تم إرسال طلبك بنجاح ✓</div>
+      <div class="lightbox-category" id="lbCategory"></div>
+      <h2 class="lightbox-name" id="lbName"></h2>
+      <p class="lightbox-price" id="lbPrice"></p>
+      
+      <form class="order-form" id="orderForm" onsubmit="orderProduct(event)">
+        <div class="form-group">
+          <label data-ar="الاسم" data-en="Name" data-fr="Nom">الاسم</label>
+          <input type="text" id="name" required placeholder="" data-ar-placeholder="أدخل اسمك" data-en-placeholder="Enter your name" data-fr-placeholder="Entrez votre nom">
+        </div>
+        
+        <div class="form-group">
+          <label data-ar="رقم الهاتف" data-en="Phone" data-fr="Téléphone">رقم الهاتف</label>
+          <input type="tel" id="phone" required placeholder="" data-ar-placeholder="+212 6xx xxx xxx" data-en-placeholder="+212 6xx xxx xxx" data-fr-placeholder="+212 6xx xxx xxx">
+        </div>
+        
+        <input type="hidden" id="product">
+        
+        <div class="order-btns">
+          <button type="submit" class="order-btn confirm" data-ar="تأكيد الطلب عبر WhatsApp" data-en="Confirm Order via WhatsApp" data-fr="Confirmer la Commande via WhatsApp">تأكيد الطلب عبر WhatsApp</button>
+          <button type="button" class="order-btn cancel" onclick="closeLightbox()" data-ar="إغلاق" data-en="Close" data-fr="Fermer">إغلاق</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ZOOM MODAL -->
+<div class="zoom-modal" id="zoomModal" onclick="if(event.target.id==='zoomModal')closeZoom()">
+  <button class="zoom-modal-close" onclick="closeZoom()">✕</button>
+  <img id="zoomImage" alt="">
+</div>
+
+<script>
+const translations = {
+  decorativeCategory: { ar: 'ديكور', en: 'Decorative', fr: 'Décor' },
+  namesCategory: { ar: 'أسماء', en: 'Names', fr: 'Noms' },
+  birthdayCategory: { ar: 'أعياد ميلاد', en: 'Birthdays', fr: 'Anniversaires' },
+  bagsCategory: { ar: 'حقائب', en: 'Bags', fr: 'Sacs' },
+  photoframeCategory: { ar: 'إطارات صور', en: 'Photo Frames', fr: 'Cadres Photos' }
+};
+
+const currencies = {
+  ar: { symbol: 'د.م.', rate: 1 },
+  en: { symbol: 'MAD', rate: 1 },
+  fr: { symbol: '€', rate: 0.095 }
+};
+
+const products = [
+  // Collection/All (صور متعددة) - تظهر في الكل فقط
+  {id:1, name:'مجموعة ورود وأوراق', nameEn:'Roses & Leaves Collection', nameFr:'Collection Roses & Feuilles', category:'all', image:'images/product1.jpg', price:550},
+  {id:23, name:'مجموعة النجوم والقمر', nameEn:'Stars & Moon Collection', nameFr:'Collection Étoiles & Lune', category:'all', image:'images/product23.jpg', price:560},
+  {id:35, name:'مجموعة الفراشات والزهور', nameEn:'Butterflies & Flowers Collection', nameFr:'Collection Papillons & Fleurs', category:'all', image:'images/product35.jpeg', price:570},
+
+  // Decorative (ديكور)
+  {id:2, name:'ديكور دائري ذهبي', nameEn:'Golden Circle Decor', nameFr:'Décor Cercle Doré', category:'decorative', image:'images/product2.jpg', price:380},
+  {id:3, name:'ديكور أوراق الشجر', nameEn:'Leaf Decor', nameFr:'Décor Feuilles', category:'decorative', image:'images/product3.jpg', price:385},
+  {id:4, name:'ديكور نباتات زينة', nameEn:'Plant Decor', nameFr:'Décor Plantes', category:'decorative', image:'images/product4.jpeg', price:390},
+  {id:5, name:'ديكور شريط زهري', nameEn:'Pink Ribbon Decor', nameFr:'Décor Ruban Rose', category:'decorative', image:'images/product5.jpg', price:395},
+  {id:18, name:'ديكور زهور هندسي', nameEn:'Geometric Flowers Decor', nameFr:'Décor Fleurs Géométriques', category:'decorative', image:'images/product18.jpeg', price:405},
+  {id:19, name:'ديكور فروع الزيتون', nameEn:'Olive Branches Decor', nameFr:'Décor Branches Olivier', category:'decorative', image:'images/product19.jpg', price:410},
+  {id:20, name:'ديكور خطوط إسلامية', nameEn:'Islamic Patterns Decor', nameFr:'Décor Motifs Islamiques', category:'decorative', image:'images/product20.jpeg', price:420},
+  {id:21, name:'ديكور نقاط ملونة', nameEn:'Colorful Dots Decor', nameFr:'Décor Points Colorés', category:'decorative', image:'images/product21.jpeg', price:415},
+  {id:22, name:'ديكور برتقالي ذهبي', nameEn:'Orange Gold Decor', nameFr:'Décor Orange Doré', category:'decorative', image:'images/product22.jpeg', price:425},
+  {id:28, name:'ديكور أزرق سماوي', nameEn:'Sky Blue Decor', nameFr:'Décor Bleu Ciel', category:'decorative', image:'images/product28.jpg', price:430},
+  {id:36, name:'ديكور نجوم ملونة', nameEn:'Colorful Stars Decor', nameFr:'Décor Étoiles Colorées', category:'decorative', image:'images/product36.jpeg', price:435},
+  {id:37, name:'ديكور حروف عربية فنية', nameEn:'Artistic Arabic Letters Decor', nameFr:'Décor Lettres Arabes Artistiques', category:'decorative', image:'images/product37.jpg', price:440},
+  {id:38, name:'ديكور منظر طبيعي', nameEn:'Landscape Decor', nameFr:'Décor Paysage', category:'decorative', image:'images/product38.jpeg', price:445},
+
+  // Names (أسماء)
+  {id:6, name:'اسم فاطمة مميز', nameEn:'Fatima Special Name', nameFr:'Nom Fatima Spécial', category:'names', image:'images/product6.jpg', price:420},
+  {id:7, name:'اسم محمد راقي', nameEn:'Mohammad Elegant Name', nameFr:'Nom Mohammad Élégant', category:'names', image:'images/product7.jpeg', price:425},
+  {id:8, name:'اسم مع زهور', nameEn:'Name with Flowers', nameFr:'Nom avec Fleurs', category:'names', image:'images/product8.jpg', price:430},
+  {id:17, name:'اسم مع أوراق ذهبية', nameEn:'Name with Golden Leaves', nameFr:'Nom avec Feuilles Dorées', category:'names', image:'images/product17.jpg', price:435},
+  {id:31, name:'اسم نديم راقي', nameEn:'Nadeem Elegant Name', nameFr:'Nom Nadeem Élégant', category:'names', image:'images/product31.jpg', price:435},
+  {id:34, name:'اسم ليلى ملكي', nameEn:'Layla Royal Name', nameFr:'Nom Layla Royal', category:'names', image:'images/product34.jpg', price:440},
+  {id:40, name:'اسم سارة فريد', nameEn:'Sarah Unique Name', nameFr:'Nom Sarah Unique', category:'names', image:'images/product40.jpeg', price:445},
+
+  // Birthday (أعياد ميلاد)
+  {id:9, name:'عيد ميلاد فراشة ملونة', nameEn:'Colorful Butterfly Birthday', nameFr:'Anniversaire Papillon Coloré', category:'birthday', image:'images/product9.jpg', price:435},
+  {id:10, name:'عيد ميلاد القمر والنجوم', nameEn:'Moon & Stars Birthday', nameFr:'Anniversaire Lune & Étoiles', category:'birthday', image:'images/product10.jpg', price:440},
+  {id:11, name:'عيد ميلاد أرنب ظريف', nameEn:'Cute Bunny Birthday', nameFr:'Anniversaire Petit Lapin', category:'birthday', image:'images/product11.jpg', price:438},
+  {id:12, name:'عيد ميلاد قلوب وورود', nameEn:'Hearts & Roses Birthday', nameFr:'Anniversaire Cœurs & Roses', category:'birthday', image:'images/product12.jpg', price:442},
+  {id:25, name:'عيد ميلاد مع ورود وأقواس', nameEn:'Birthday with Roses & Bows', nameFr:'Anniversaire Roses & Rubans', category:'birthday', image:'images/product25.jpeg', price:430},
+  {id:30, name:'عيد ميلاد مع نجوم براقة', nameEn:'Shining Stars Birthday', nameFr:'Anniversaire Étoiles Brillantes', category:'birthday', image:'images/product30.jpg', price:440},
+  {id:41, name:'عيد ميلاد حب وورود', nameEn:'Love & Roses Birthday', nameFr:'Anniversaire Amour & Roses', category:'birthday', image:'images/product41.jpg', price:455},
+
+  // Bags (حقائب)
+  {id:13, name:'حقيبة زهور برية', nameEn:'Wildflowers Bag', nameFr:'Sac Fleurs Sauvages', category:'bags', image:'images/product13.jpg', price:480},
+  {id:14, name:'حقيبة نقاط ملونة', nameEn:'Colorful Dots Bag', nameFr:'Sac Points Colorés', category:'bags', image:'images/product14.jpg', price:485},
+  {id:15, name:'حقيبة أوراق أنيقة', nameEn:'Elegant Leaves Bag', nameFr:'Sac Feuilles Élégantes', category:'bags', image:'images/product15.jpg', price:490},
+  {id:16, name:'حقيبة منقوشة فنية', nameEn:'Artistic Pattern Bag', nameFr:'Sac Motifs Artistiques', category:'bags', image:'images/product16.jpeg', price:495},
+  {id:24, name:'حقيبة قطن بيج', nameEn:'Beige Cotton Bag', nameFr:'Sac Coton Beige', category:'bags', image:'images/product24.jpg', price:450},
+  {id:26, name:'حقيبة ورود مميزة', nameEn:'Special Roses Bag', nameFr:'Sac Roses Spécial', category:'bags', image:'images/product26.jpeg', price:460},
+  {id:27, name:'حقيبة نمط حديث', nameEn:'Modern Pattern Bag', nameFr:'Sac Motif Moderne', category:'bags', image:'images/product27.jpeg', price:470},
+
+  // Photo Frames (إطارات الصور)
+  {id:29, name:'إطار زهور ذهبي', nameEn:'Golden Flowers Frame', nameFr:'Cadre Fleurs Dorées', category:'photoframe', image:'images/product29.jpg', price:440},
+  {id:32, name:'إطار فضي أنيق', nameEn:'Elegant Silver Frame', nameFr:'Cadre Argent Élégant', category:'photoframe', image:'images/product32.jpeg', price:445},
+  {id:33, name:'إطار نمط عصري', nameEn:'Modern Pattern Frame', nameFr:'Cadre Motif Moderne', category:'photoframe', image:'images/product33.jpeg', price:450},
+  {id:39, name:'إطار زهور رومانسية', nameEn:'Romantic Flowers Frame', nameFr:'Cadre Fleurs Romantiques', category:'photoframe', image:'images/product39.jpg', price:455},
+];
+
+let currentLang = 'ar';
+let currentFilter = 'all';
+
+function getCategoryName(category, lang = currentLang) {
+  const categoryMap = {
+    'decorative': translations.decorativeCategory[lang],
+    'names': translations.namesCategory[lang],
+    'birthday': translations.birthdayCategory[lang],
+    'bags': translations.bagsCategory[lang],
+    'photoframe': translations.photoframeCategory[lang]
+  };
+  return categoryMap[category] || category;
+}
+
+function formatPrice(price, lang = currentLang) {
+  const currency = currencies[lang];
+  const convertedPrice = Math.round(price * currency.rate);
+  return `${convertedPrice} ${currency.symbol}`;
+}
+
+function getProductName(product, lang = currentLang) {
+  if(lang === 'en') return product.nameEn;
+  if(lang === 'fr') return product.nameFr;
+  return product.name;
+}
+
+function updateLanguage() {
+  const direction = currentLang === 'ar' ? 'rtl' : 'ltr';
+  document.documentElement.dir = direction;
+  document.documentElement.lang = currentLang;
+  
+  document.querySelectorAll('[data-ar][data-fr][data-en]').forEach(el => {
+    const text = el.getAttribute(`data-${currentLang}`);
+    if(text && !el.querySelector('[class*="span"]')) {
+      el.textContent = text;
+    }
+  });
+
+  document.querySelectorAll('input[data-ar-placeholder]').forEach(input => {
+    const placeholder = input.getAttribute(`data-${currentLang}-placeholder`);
+    if(placeholder) input.placeholder = placeholder;
+  });
+  
+  renderProducts(currentFilter);
+}
+
+function renderProducts(filter = 'all') {
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = '';
+  
+  const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+  
+  filtered.forEach(product => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.onclick = () => openLightbox(product);
+    
+    const productName = getProductName(product, currentLang);
+    const productPrice = formatPrice(product.price, currentLang);
+    
+    card.innerHTML = `
+      <div class="product-image">
+        <img src="${product.image}" alt="${productName}" loading="lazy">
+      </div>
+      <div class="product-info">
+        <h3 class="product-name">${productName}</h3>
+        <p class="product-price">${productPrice}</p>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function filterCat(cat, elem) {
+  currentFilter = cat;
+  document.querySelectorAll('.cat-tab').forEach(btn => btn.classList.remove('active'));
+  elem.classList.add('active');
+  renderProducts(cat);
+}
+
+function openLightbox(product) {
+  const productName = getProductName(product, currentLang);
+  const categoryName = getCategoryName(product.category, currentLang);
+  const productPrice = formatPrice(product.price, currentLang);
+  
+  document.getElementById('lbImage').src = product.image;
+  document.getElementById('lbName').textContent = productName;
+  document.getElementById('lbCategory').textContent = categoryName;
+  document.getElementById('lbPrice').textContent = productPrice;
+  document.getElementById('product').value = productName;
+  document.getElementById('lightbox').classList.add('open');
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+}
+
+function openZoom(imageSrc) {
+  document.getElementById('zoomImage').src = imageSrc;
+  document.getElementById('zoomModal').classList.add('open');
+}
+
+function closeZoom() {
+  document.getElementById('zoomModal').classList.remove('open');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.product-image').forEach(img => {
+    img.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const imageSrc = this.querySelector('img').src;
+      openZoom(imageSrc);
+    });
+  });
+});
+
+function orderProduct(event) {
+  event.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const product = document.getElementById('product').value.trim();
+  
+  if (!name || !phone || !product) {
+    alert('الرجاء ملء جميع الحقول');
+    return;
+  }
+  
+  // رسالة تأكيد الطلب التلقائية
+  const messages = {
+    ar: `مرحبا،\nأريد أن أطلب: ${product}\n\nبيانات العميل:\nالاسم: ${name}\nرقم الهاتف: ${phone}\n\nشكراً لتعاملكم معنا 🙏`,
+    en: `Hello,\nI would like to order: ${product}\n\nCustomer Information:\nName: ${name}\nPhone: ${phone}\n\nThank you! 🙏`,
+    fr: `Bonjour,\nJe souhaite commander: ${product}\n\nInformations Client:\nNom: ${name}\nTéléphone: ${phone}\n\nMerci ! 🙏`
+  };
+  
+  const msg = messages[currentLang] || messages['ar'];
+  const whatsappUrl = `https://wa.me/212783395988?text=${encodeURIComponent(msg)}`;
+  
+  // عرض رسالة النجاح
+  const successDiv = document.getElementById('formSuccess');
+  successDiv.style.display = 'block';
+  successDiv.textContent = successDiv.getAttribute(`data-${currentLang}`);
+  
+  // فتح WhatsApp بعد ثانية واحدة
+  setTimeout(() => {
+    window.open(whatsappUrl, '_blank');
+  }, 500);
+  
+  // إغلاق الـ lightbox بعد 2 ثانية
+  setTimeout(() => {
+    closeLightbox();
+    document.getElementById('orderForm').reset();
+  }, 2000);
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+  updateLanguage();
+}
+
+// Initialize
+updateLanguage();
+document.addEventListener('click', (e) => {
+  if (e.target.id === 'lightbox') closeLightbox();
+});
+</script>
+</body>
+</html>
